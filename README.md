@@ -1,1 +1,1 @@
-# connect4
+# Connect Four board game Reinforcement Learning Agent
