@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 from collections import namedtuple
 
 from keras.models import load_model
@@ -11,8 +12,6 @@ from c4.encoders import OnePlaneEncoder
 from c4.utils import print_board, print_encoded_board
 
 from c4.rl import ExperienceCollector, combine_experience
-
-NUM_GAMES=2000
 
 BOARD_NUM_ROWS=6
 BOARD_NUM_COLS=7
@@ -39,8 +38,8 @@ def simulate_game(board_size, agent_x, agent_o):
 
     winner = game.winner()
     
-    print_board(game.board)
-    print('Winner:', winner)
+    #print_board(game.board)
+    #print('Winner:', winner)
 
     return GameRecord(
         moves=moves,
@@ -48,6 +47,12 @@ def simulate_game(board_size, agent_x, agent_o):
     )
         
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--num_games', '-n', type=int, default=10)
+    args = parser.parse_args()
+
+    num_games = args.num_games
+
     board_size = (BOARD_NUM_ROWS, BOARD_NUM_COLS)    
 
     model = load_model('./c4/models/rl_policy_agent_model.h5')
@@ -62,12 +67,13 @@ def main():
     agent_x.set_collector(collector_x)
     agent_o.set_collector(collector_o)
 
-    for i in range(NUM_GAMES):
+    for i in range(num_games):
         collector_x.begin_episode()
         collector_o.begin_episode()
 
         game_record = simulate_game(board_size, agent_x, agent_o)
-        print('Simulating game {}/{}'.format(i+1, NUM_GAMES))
+        if (i+1) % (int(num_games/10)) == 0:
+            print('Simulating game {}/{}'.format(i+1, num_games))
         
         if game_record.winner == Player.x:
             collector_x.complete_episode(reward=1)
