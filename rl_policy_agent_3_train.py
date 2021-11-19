@@ -13,7 +13,7 @@ def main():
 
     model = load_model('./c4/models/rl_policy_agent_model.h5')
 
-    optimizer = SGD(learning_rate=0.001, clipnorm=1.0)
+    optimizer = SGD(learning_rate=0.00001, clipnorm=1.0)
     model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 
     experience = load_experience('./c4/models/rl_policy_agent_experience.h5')
@@ -31,7 +31,7 @@ def main():
 
     model.fit(
        X, y,
-       batch_size=64,
+       batch_size=128,
        epochs=1)
 
     save_model(model, './c4/models/rl_policy_agent_model.h5')
