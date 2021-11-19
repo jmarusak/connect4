@@ -14,8 +14,8 @@ from c4.rl import ExperienceCollector, combine_experience
 
 NUM_GAMES=100
 
-BOARD_NUM_ROWS=6
-BOARD_NUM_COLS=7
+BOARD_NUM_ROWS=5
+BOARD_NUM_COLS=5
 
 class GameRecord(namedtuple('GameRecord', 'moves winner')):
     pass

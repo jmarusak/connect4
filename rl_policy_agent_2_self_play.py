@@ -13,8 +13,8 @@ from c4.utils import print_board, print_encoded_board
 
 from c4.rl import ExperienceCollector, combine_experience
 
-BOARD_NUM_ROWS=6
-BOARD_NUM_COLS=7
+BOARD_NUM_ROWS=5
+BOARD_NUM_COLS=5
 
 class GameRecord(namedtuple('GameRecord', 'moves winner')):
     pass
@@ -38,8 +38,8 @@ def simulate_game(board_size, agent_x, agent_o):
 
     winner = game.winner()
     
-    #print_board(game.board)
-    #print('Winner:', winner)
+    print_board(game.board)
+    print('Winner:', winner)
 
     return GameRecord(
         moves=moves,

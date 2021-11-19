@@ -9,8 +9,8 @@ from c4.encoders import OnePlaneEncoder
 
 from keras.models import load_model
 
-BOARD_NUM_ROWS=6
-BOARD_NUM_COLS=7
+BOARD_NUM_ROWS=5
+BOARD_NUM_COLS=5
 
 def main():
     board_size = (BOARD_NUM_ROWS, BOARD_NUM_COLS)
