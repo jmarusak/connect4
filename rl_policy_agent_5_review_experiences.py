@@ -3,8 +3,8 @@
 import numpy as np
 from c4.rl import load_experience
 
-BOARD_NUM_ROWS=6
-BOARD_NUM_COLS=7
+BOARD_NUM_ROWS=5
+BOARD_NUM_COLS=5
 
 def main():
     experience = load_experience('./c4/models/rl_policy_agent_experience.h5')

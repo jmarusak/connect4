@@ -38,8 +38,8 @@ def simulate_game(board_size, agent_x, agent_o):
 
     winner = game.winner()
     
-    print_board(game.board)
-    print('Winner:', winner)
+    #print_board(game.board)
+    #print('Winner:', winner)
 
     return GameRecord(
         moves=moves,
